@@ -7,7 +7,7 @@ public class dLottoListener extends PluginListener{
 	}
 	
 	public boolean onCommand(Player player, String[] cmd){
-		if((cmd[0].equalsIgnoreCase("/LLotto"))||(cmd[0].equalsIgnoreCase("/ll"))){
+		if((cmd[0].equalsIgnoreCase("/LLotto"))||(cmd[0].equalsIgnoreCase("/LL"))){
 			if(player.canUseCommand("/llotto")){
 				if(cmd.length > 1){
 					if(cmd[1].equals("buy")){
@@ -36,9 +36,12 @@ public class dLottoListener extends PluginListener{
 					else if(cmd[1].equalsIgnoreCase("check")){
 						return dLA.checkLittleTicket(player);
 					}
+					else if(cmd[1].equalsIgnoreCase("time")){
+						return dLA.checkLittle(player);
+					}
 				}
 				else{
-					return dLA.checkLittle(player);
+					return dLA.littleINFO(player);
 				}
 			}
 			else{
@@ -46,7 +49,7 @@ public class dLottoListener extends PluginListener{
 				return true;
 			}
 		}
-		else if((cmd[0].equalsIgnoreCase("/BLotto"))||(cmd[0].equalsIgnoreCase("/bl"))){
+		else if((cmd[0].equalsIgnoreCase("/BLotto"))||(cmd[0].equalsIgnoreCase("/BL"))){
 			if(player.canUseCommand("/blotto")){
 				if(cmd.length > 1){
 					if(cmd[1].equals("buy")){
@@ -75,9 +78,12 @@ public class dLottoListener extends PluginListener{
 					else if(cmd[1].equalsIgnoreCase("check")){
 						return dLA.checkBigTicket(player);
 					}
+					else if(cmd[1].equalsIgnoreCase("time")){
+						return dLA.checkBig(player);
+					}
 				}
 				else{
-					return dLA.checkBig(player);
+					return dLA.bigINFO(player);
 				}
 			}
 			else{
@@ -85,7 +91,7 @@ public class dLottoListener extends PluginListener{
 				return true;
 			}
 		}
-		else if((cmd[0].equalsIgnoreCase("/MLotto"))||(cmd[0].equalsIgnoreCase("/ml"))){
+		else if((cmd[0].equalsIgnoreCase("/MLotto"))||(cmd[0].equalsIgnoreCase("/ML"))){
 			if(player.canUseCommand("/mlotto")){
 				if(cmd.length > 1){
 					if(cmd[1].equals("buy")){
@@ -114,9 +120,12 @@ public class dLottoListener extends PluginListener{
 					else if(cmd[1].equalsIgnoreCase("check")){
 						return dLA.checkMegaTicket(player);
 					}
+					else if(cmd[1].equalsIgnoreCase("time")){
+						return dLA.checkMega(player);
+					}
 				}
 				else{
-					return dLA.checkMega(player);
+					return dLA.megaINFO(player);
 				}
 			}
 			else{
@@ -124,9 +133,14 @@ public class dLottoListener extends PluginListener{
 				return true;
 			}
 		}
-		else if((cmd[0].equalsIgnoreCase("/ilotto"))||(cmd[0].equalsIgnoreCase("/il"))){
+		else if((cmd[0].equalsIgnoreCase("/ilotto"))||(cmd[0].equalsIgnoreCase("/IL"))){
 			if(player.canUseCommand("/ilotto")){
-				return dLA.getInstantTicket(player);
+				if(cmd.length == 1){
+					return dLA.instantINFO(player);
+				}
+				else if(cmd[1].equalsIgnoreCase("buy")){
+					return dLA.getInstantTicket(player);
+				}
 			}
 			else{
 				player.sendMessage("§2[§3dLotto§2]§c You don't have permission to play Instant Lotto...");

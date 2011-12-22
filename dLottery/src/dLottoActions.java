@@ -43,6 +43,61 @@ public class dLottoActions {
 		dlt = new dLottoTimer(this, dld);
 	}
 	
+	public boolean littleINFO(Player player){
+		player.sendMessage("§6-----§3dLottery Little Lotto§6-----");
+		player.sendMessage("§3Cost = §6"+priceForm(littlecost));
+		player.sendMessage("§3Numbers are §6 1 §3thru §639 §3- Pick 3 (can't be the same)");
+		player.sendMessage("§3/LL buy # # # -§6 Buys a Little Lotto Ticket");
+		player.sendMessage("§3/LL time -§6 displays time to Number draw");
+		player.sendMessage("§3/LL check -§6 checks if you have a ticket and what the numbers are");
+		if(player.isAdmin()){
+			player.sendMessage("§3/LL draw -§6 immediately draws Little Lotto");
+			player.sendMessage("§3/LL broadcast -§6 broadcasts to all when Numbers will be drawn");
+		}
+		return true;
+	}
+	
+	public boolean bigINFO(Player player){
+		player.sendMessage("§6-----§3dLottery Big Lotto§6-----");
+		player.sendMessage("§3Cost = §6"+priceForm(bigcost));
+		player.sendMessage("§3Numbers are §61 §3thru §652 §3- Pick 5 (can't be the same)");
+		player.sendMessage("§3/BL buy # # # # # -§6 Buys a Big Lotto Ticket");
+		player.sendMessage("§3/BL time -§6 displays time to Number draw");
+		player.sendMessage("§3/BL check -§6 checks if you have a ticket and what the numbers are");
+		if(player.isAdmin()){
+			player.sendMessage("§3/BL draw -§6 immediately draws Big Lotto");
+			player.sendMessage("§3/BL broadcast -§6 broadcasts to all when Numbers will be drawn");
+		}
+		return true;
+	}
+	
+	public boolean megaINFO(Player player){
+		player.sendMessage("§6-----§3dLottery Mega Lotto§6-----");
+		player.sendMessage("§3Cost = §6"+priceForm(megacost));
+		player.sendMessage("§3Numbers are §61 §3thru §656 §3- Pick 5 (can't be the same)");
+		player.sendMessage("§3MegaNums are §61 §3thru §646 §3- Pick 1 (as # - 6)");
+		player.sendMessage("§3/ML buy # # # # # # -§6 Buys a Mega Lotto Ticket");
+		player.sendMessage("§3/ML time -§6 displays time to Number draw");
+		player.sendMessage("§3/ML check -§6 checks if you have a ticket and what the numbers are");
+		if(player.isAdmin()){
+			player.sendMessage("§3/ML draw -§6 immediately draws Mega Lotto");
+			player.sendMessage("§3/ML broadcast -§6 broadcasts to all when Numbers will be drawn");
+		}
+		return true;
+	}
+	
+	public boolean instantINFO(Player player){
+		player.sendMessage("§6-----§3dLottery Instant Lotto§6-----");
+		player.sendMessage("§3Cost = §6"+priceForm(instantcost));
+		player.sendMessage("§31 in 1000 chance for -§6"+priceForm((InstaWinnings*10)));
+		player.sendMessage("§31 in 500 chance for -§6"+priceForm((InstaWinnings*5)));
+		player.sendMessage("§31 in 250 chance for -§6"+priceForm((InstaWinnings*5)));
+		player.sendMessage("§31 in 200 chance for -§6"+priceForm(InstaWinnings));
+        player.sendMessage("§31 in 100 chance for -§6"+priceForm(instantcost));
+        player.sendMessage("§31 in 50 chance for -§6Free Ticket (used immediately)");
+        return true;
+	}
+	
 	public boolean getInstantTicket(Player player){
 		String name = player.getName();
 		if(!hasEIC(name)){
@@ -515,8 +570,34 @@ public class dLottoActions {
 		}
 		if(megapay > 0){
 			for(String key: MegaNums.keySet()){
-				if(MegaNums.get(key) == nums){
-					tempMegaWins.add(key);
+				int[] mn = MegaNums.get(key);
+				boolean n1 = false, n2 = false, n3 = false, n4 = false, n5 = false;
+				for(int i = 0; i < 5; i++){
+					if(nums[0] == mn[i]){
+						n1 = true;
+						continue;
+					}
+					else if(nums[1] == mn[i]){
+						n2 = true;
+						continue;
+					}
+					else if(nums[2] == mn[i]){
+						n3 = true;
+						continue;
+					}
+					else if (nums[3] == mn [i]){
+						n4 = true;
+						continue;
+					}
+					else if (nums[4] == mn[i]){
+						n5 = true;
+						continue;
+					}
+				}
+				if(n1 && n2 && n3 && n4 && n5){
+					if(mn[5] == nums[5]){
+						tempMegaWins.add(key);
+					}
 				}
 			}
 			MegaNums.clear();
@@ -578,7 +659,31 @@ public class dLottoActions {
 		}
 		if(bigpay > 0){
 			for(String key: BigNums.keySet()){
-				if(BigNums.get(key) == nums){
+				int[] mn = BigNums.get(key);
+				boolean n1 = false, n2 = false, n3 = false, n4 = false, n5 = false;
+				for(int i = 0; i < 5; i++){
+					if(nums[0] == mn[i]){
+						n1 = true;
+						continue;
+					}
+					else if(nums[1] == mn[i]){
+						n2 = true;
+						continue;
+					}
+					else if(nums[2] == mn[i]){
+						n3 = true;
+						continue;
+					}
+					else if (nums[3] == mn [i]){
+						n4 = true;
+						continue;
+					}
+					else if (nums[4] == mn[i]){
+						n5 = true;
+						continue;
+					}
+				}
+				if(n1 && n2 && n3 && n4 && n5){
 					tempBigWins.add(key);
 				}
 			}
@@ -627,13 +732,32 @@ public class dLottoActions {
 		etc.getServer().messageAll("§e"+nums[0]+" "+nums[1]+" "+nums[2]);
 		dld.log.info("[dLotto] LittleLotto has been drawn! #'s are:"+nums[0]+" "+nums[1]+" "+nums[2]);
 		
-		double littlepay = bigwin;
+		double littlepay = littlewin;
 		if(!income.isEmpty()){
 			littlepay = income.get("Little");
 		}
 		if(littlepay > 0){
 			for(String key: LittleNums.keySet()){
-				if(LittleNums.get(key) == nums){
+				int[] mn = MegaNums.get(key);
+				boolean n1 = false, n2 = false, n3 = false;
+				for(int i = 0; i < 5; i++){
+					if(nums[0] == mn[i]){
+						n1 = true;
+						continue;
+					}
+					else if(nums[1] == mn[i]){
+						n2 = true;
+						continue;
+					}
+					else if(nums[2] == mn[i]){
+						n3 = true;
+						continue;
+					}
+					else{
+						break;
+					}
+				}
+				if(n1 && n2 && n3){
 					tempLittleWins.add(key);
 				}
 			}
