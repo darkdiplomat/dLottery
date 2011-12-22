@@ -147,6 +147,9 @@ public class dLottoListener extends PluginListener{
 				return true;
 			}	
 		}
+		else if(cmd[0].equalsIgnoreCase("/dlottery")){
+			return dLA.dLottoINFO(player);
+		}
 		else if((cmd[0].equals("/#save-all"))||(cmd[0].equals("/#stop"))){
 				saveallstop(player);
 		}

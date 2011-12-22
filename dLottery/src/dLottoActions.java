@@ -75,8 +75,8 @@ public class dLottoActions {
 		player.sendMessage("§6-----§3dLottery Mega Lotto§6-----");
 		player.sendMessage("§3Cost = §6"+priceForm(megacost));
 		player.sendMessage("§3Numbers are §61 §3thru §656 §3- Pick 5 (can't be the same)");
-		player.sendMessage("§3MegaNums are §61 §3thru §646 §3- Pick 1 (as # - 6)");
-		player.sendMessage("§3/ML buy # # # # # # -§6 Buys a Mega Lotto Ticket");
+		player.sendMessage("§3MegaNums are §61 §3thru §646 §3- Pick 1 (as @)");
+		player.sendMessage("§3/ML buy # # # # # @ -§6 Buys a Mega Lotto Ticket");
 		player.sendMessage("§3/ML time -§6 displays time to Number draw");
 		player.sendMessage("§3/ML check -§6 checks if you have a ticket and what the numbers are");
 		if(player.isAdmin()){
@@ -89,13 +89,22 @@ public class dLottoActions {
 	public boolean instantINFO(Player player){
 		player.sendMessage("§6-----§3dLottery Instant Lotto§6-----");
 		player.sendMessage("§3Cost = §6"+priceForm(instantcost));
+		player.sendMessage("§3/IL buy -§6 Buys Instant Lotto Ticket");
 		player.sendMessage("§31 in 1000 chance for -§6"+priceForm((InstaWinnings*10)));
 		player.sendMessage("§31 in 500 chance for -§6"+priceForm((InstaWinnings*5)));
-		player.sendMessage("§31 in 250 chance for -§6"+priceForm((InstaWinnings*5)));
+		player.sendMessage("§31 in 250 chance for -§6"+priceForm((InstaWinnings*2)));
 		player.sendMessage("§31 in 200 chance for -§6"+priceForm(InstaWinnings));
         player.sendMessage("§31 in 100 chance for -§6"+priceForm(instantcost));
         player.sendMessage("§31 in 50 chance for -§6Free Ticket (used immediately)");
         return true;
+	}
+	
+	public boolean dLottoINFO(Player player){
+		player.sendMessage("§6-----§3dLottery§6-----");
+		player.sendMessage("§3Version = §6"+dLottery.version);
+		player.sendMessage("§3Author = §2darkdiplomat");
+		player.sendMessage("§3COMMANDS =§6 /IL /BL /ML /ML");
+		return true;
 	}
 	
 	public boolean getInstantTicket(Player player){

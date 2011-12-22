@@ -7,7 +7,7 @@ public class dLottery extends Plugin{
 	static dLottoActions dLA;
 	static dLottoTimer dLT;
 	String name = "[dLottery]";
-	String version = "1.1";
+	static String version = "1.1";
 	
 	public void enable(){
 		dLD = new dLottoData();
@@ -17,6 +17,7 @@ public class dLottery extends Plugin{
 	
 	public void disable(){
 		dLA.onDisable(false);
+		etc.getInstance().removeCommand("/dlottery");
 		etc.getInstance().removeCommand("/llotto");
 		etc.getInstance().removeCommand("/blotto");
 		etc.getInstance().removeCommand("/mlotto");
@@ -27,9 +28,10 @@ public class dLottery extends Plugin{
 	public void initialize(){
 		dLL = new dLottoListener(dLA);
 		etc.getLoader().addListener(PluginLoader.Hook.COMMAND, dLL, this, PluginListener.Priority.MEDIUM);
-		etc.getInstance().addCommand("/llotto", "- displays dLottery Little Lotto info");
-		etc.getInstance().addCommand("/blotto", "- displays dLottery Big Lotto info");
-		etc.getInstance().addCommand("/mlotto", "- displays dLottery Mega Lotto info");
-		etc.getInstance().addCommand("/ilotto", "- instant lotto 1 in 50 chance to win BIG INSTANTLY!");
+		etc.getInstance().addCommand("/dlottery", "- displays dLottery INFO");
+		etc.getInstance().addCommand("/llotto", "- displays dLottery Little Lotto INFO");
+		etc.getInstance().addCommand("/blotto", "- displays dLottery Big Lotto INFO");
+		etc.getInstance().addCommand("/mlotto", "- displays dLottery Mega Lotto INFO");
+		etc.getInstance().addCommand("/ilotto", "- displays dLottery Instant Lotto INFO");
 	}
 }
